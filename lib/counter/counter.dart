@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/counter/button_counter_min.dart';
 import 'package:learn_flutter/counter/button_counter_plus.dart';
+import 'package:learn_flutter/counter/counter_view_model.dart';
+import 'package:provider/provider.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
@@ -10,37 +12,25 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
-  int val=0;
-
-  _decrementValue(){
-    setState(() {
-      val--;
-      print(val);
-    });
-  }
-
-  _incrementValue(){
-    setState(() {
-      val++;
-      print(val);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      body: Column(
+    return SafeArea(
+        child: Scaffold(
+            body: ChangeNotifierProvider(
+      create: (context) => CounterViewModel(),
+      child: Column(
         children: [
-          Text(val.toString()),
+          Consumer<CounterViewModel>(builder: (context, value, child) {
+            return Text('${value.val}');
+          },),
           Row(
             children: [
-              ButtonCounterPlus(increment: _incrementValue,),
-              ButtonCounterMin(decrement: _decrementValue,)
+              ButtonCounterPlus(),
+              ButtonCounterMin()
             ],
           ),
         ],
       ),
-    ));
+    )));
   }
 }
-
