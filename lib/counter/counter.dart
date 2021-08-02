@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/counter/button_counter_min.dart';
+import 'package:learn_flutter/counter/button_counter_plus.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
@@ -32,8 +34,8 @@ class _CounterScreenState extends State<CounterScreen> {
           Text(val.toString()),
           Row(
             children: [
-              TextButton(onPressed: _incrementValue, child: Text("+")),
-              TextButton(onPressed: _decrementValue, child: Text("-")),
+              ButtonCounterPlus(increment: _incrementValue,),
+              ButtonCounterMin(decrement: _decrementValue,)
             ],
           ),
         ],
