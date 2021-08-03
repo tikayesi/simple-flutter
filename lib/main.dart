@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       ),
         // home: Student(),
       routes: {
-        '/' : (context) => CounterScreen(),
-        // '/' : (context) => Student(),
+        // '/' : (context) => CounterScreen(),
+        '/' : (context) => Student(),
         '/calculator': (context) => Calculator(),
       },
       // home: Calculator(),

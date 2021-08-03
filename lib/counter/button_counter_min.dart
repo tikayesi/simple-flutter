@@ -7,7 +7,8 @@ class ButtonCounterMin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: TextButton(onPressed: () {
-        Provider.of<CounterViewModel>(context, listen: false).decrementValue();
+        //Provider.of<CounterViewModel>(context, listen: false).decrementValue();
+        context.read<CounterViewModel>().decrementValue();
       }, child: Text("-")),
     );
   }

@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/data_source.dart';
 import 'package:learn_flutter/student_detail.dart';
 
 class Student extends StatefulWidget{
@@ -22,7 +23,7 @@ class _Student extends State<Student>{
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController name = new TextEditingController();
   TextEditingController age = new TextEditingController();
-  List<std> names = <std>[];
+
 
   void deleteNames(int name){
     setState(() {

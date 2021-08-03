@@ -8,7 +8,9 @@ class ButtonCounterPlus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: TextButton(onPressed: (){
-        Provider.of<CounterViewModel>(context, listen: false).incrementValue();
+        // Provider.of<CounterViewModel>(context, listen: false).incrementValue();
+        //context.read<CounterViewModel>().incrementValue();
+        CounterViewModel().incrementValue();
       }, child: Text("+")),
     );
   }
