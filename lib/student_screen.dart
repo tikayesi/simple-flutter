@@ -1,34 +1,22 @@
 
-
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/model/student.dart';
+import 'package:learn_flutter/repository/student_repository.dart';
 import 'package:learn_flutter/student_detail.dart';
 
-class Student extends StatefulWidget{
+class StudentScreen extends StatefulWidget{
 
   @override
   _Student createState() => _Student();
 
 }
 
-class std{
-  int id;
-  String name;
-  String age;
-
-  std(this.id, this.name, this.age);
-}
-
-class _Student extends State<Student>{
+class _Student extends State<StudentScreen>{
+  StudentRepository _studentRepository = StudentRepository();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController name = new TextEditingController();
   TextEditingController age = new TextEditingController();
-  List<std> names = <std>[];
 
-  void deleteNames(int name){
-    setState(() {
-      names.removeWhere((element) => element.id == name);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +29,7 @@ class _Student extends State<Student>{
     //
     //   );
     // }
+
 
     return SafeArea(child: Scaffold(
       body: Container(
@@ -88,7 +77,8 @@ class _Student extends State<Student>{
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
-                              names.add(new std(names.length+1, name.text, age.text));
+                              //students.add(new Student(students.length+1, name.text, age.text));
+                              _studentRepository.addStudent(new Student(_studentRepository.getAllStudent().length+1, name.text, age.text));
                             });
                           }
                         },
@@ -117,14 +107,18 @@ class _Student extends State<Student>{
                                 size: 40.0,
                               ),
                               title: Text(
-                                names[index].name,
+                                _studentRepository.getAllStudent()[index].name,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => StudentDetail(stu: names[index],)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => StudentDetail(stu: _studentRepository.getAllStudent()[index],)));
                               },
                             ),),
-                            Expanded(child: TextButton(onPressed: () => deleteNames(names[index].id), child: Icon(Icons.delete)),)
+                            Expanded(child: TextButton(onPressed: (){
+                              setState(() {
+                                _studentRepository.deleteStudent(_studentRepository.getAllStudent()[index].id);
+                              });
+                            }, child: Icon(Icons.delete)),)
 
                           ],
                         ),
@@ -134,7 +128,7 @@ class _Student extends State<Student>{
                       ],
                     );
                   },
-                  itemCount: names.length,
+                  itemCount: _studentRepository.getAllStudent().length,
                 ),
               ),
             ),

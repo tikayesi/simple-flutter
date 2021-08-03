@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/student.dart';
+import 'package:learn_flutter/model/student.dart';
 
 class StudentDetail extends StatefulWidget {
   const StudentDetail({Key? key, required this.stu}) : super(key: key);
 
-  final std stu;
+  final Student stu;
 
   @override
   _State createState() => _State();

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/counter/counter.dart';
-import 'package:learn_flutter/student.dart';
-import 'package:learn_flutter/calculator.dart';
+import 'package:learn_flutter/student_screen.dart';
 
 //entry point
 void main() {
@@ -20,9 +18,7 @@ class MyApp extends StatelessWidget {
       ),
         // home: Student(),
       routes: {
-        '/' : (context) => CounterScreen(),
-        // '/' : (context) => Student(),
-        '/calculator': (context) => Calculator(),
+        '/' : (context) => StudentScreen(),
       },
       // home: Calculator(),
     );
