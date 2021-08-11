@@ -18,15 +18,15 @@ class _CounterScreenState extends State<CounterScreen> {
     return SafeArea(
         child: Scaffold(
             body: ChangeNotifierProvider(
-      create: (context) => CounterViewModel(),
-      builder: (context, child){
-        return Column(
-          children: [
-            Text('${context.watch<CounterViewModel>().val}'),
-            CounterOperator()
-          ],
-        );
-      },
+            create: (context) => CounterViewModel(),
+            builder: (context, child){
+              return Column(
+                children: [
+                  Text('${context.watch<CounterViewModel>().val}'),
+                  CounterOperator()
+                ],
+              );
+            },
     )));
   }
 }
