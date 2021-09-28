@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:learn_flutter/model/student.dart';
 import 'package:learn_flutter/repository/student_repository.dart';
 import 'package:learn_flutter/student_detail.dart';
+import 'package:learn_flutter/widget/text_field_widget.dart';
 
 class StudentScreen extends StatefulWidget{
 
@@ -59,18 +61,28 @@ class _Student extends State<StudentScreen>{
                         return null;
                       },
                     ),
-                    TextFormField(
-                      controller: age,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter your age',
-                      ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
+                    TextFieldWidget(controller: age, 
+                    hintText: 'Enter Your Age',
+                    validator: MultiValidator(
+                      [
+                        RequiredValidator(errorText: 'Age is required'),
+                        MinLengthValidator(5, errorText: '5 min char')
+                      ]
                     ),
+                    ),
+
+                    // TextFormField(
+                    //   controller: age,
+                    //   decoration: const InputDecoration(
+                    //     hintText: 'Enter your age',
+                    //   ),
+                    //   validator: (String? value) {
+                    //     if (value == null || value.isEmpty) {
+                    //       return 'Please enter some text';
+                    //     }
+                    //     return null;
+                    //   },
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ElevatedButton(
